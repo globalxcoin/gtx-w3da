@@ -1,0 +1,30 @@
+<section id="trade-form">
+    <h2>Submit Trade Request</h2>
+    <form id="tradeForm">
+        <label for="tradeType">Type:</label>
+        <select id="tradeType" name="tradeType" required>
+            <option value="">Select</option>
+            <option value="Buy">Buy</option>
+            <option value="Sell">Sell</option>
+        </select>
+
+        <label for="asset">Asset / Card:</label>
+        <input type="text" id="asset" name="asset" placeholder="BTC / USDT / Gift Card" required>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" placeholder="Amount" required>
+
+        <label for="wallet">Wallet / Card Details:</label>
+        <input type="text" id="wallet" name="wallet" placeholder="Wallet address or Card info" required>
+
+        <label for="whatsapp">WhatsApp Number:</label>
+        <input type="text" id="whatsapp" name="whatsapp" placeholder="e.g. +2347055912658" required>
+
+        <label for="proof">Payment Proof (optional):</label>
+        <input type="file" id="proof" name="proof" accept="image/*">
+
+        <button type="submit">Submit Trade</button>
+    </form>
+
+    <p id="tradeMessage" style="color: green; font-weight: bold;"></p>
+                                          </section>
