@@ -87,7 +87,7 @@
 
 <div class="form-container">
   <h2>GTX W3DA Trade Form</h2>
-  <p class="instruction">📎 After clicking Submit, WhatsApp will open. You can attach your proof image manually.</p>
+  <p class="instruction">📎 After clicking Submit, WhatsApp will open. For gift cards, remember to attach proof image manually.</p>
 
   <form id="tradeForm">
     <label>Type:</label>
@@ -115,14 +115,27 @@
 document.getElementById('tradeForm').addEventListener('submit', function(e){
   e.preventDefault(); // prevent default form submission
 
-  const type = encodeURIComponent(document.getElementById('type').value);
-  const asset = encodeURIComponent(document.getElementById('asset').value);
-  const amount = encodeURIComponent(document.getElementById('amount').value);
-  const details = encodeURIComponent(document.getElementById('details').value);
+  const type = document.getElementById('type').value;
+  const asset = document.getElementById('asset').value;
+  const amount = document.getElementById('amount').value;
+  const details = document.getElementById('details').value;
 
-  const phone = "2347055912658"; // replace with your WhatsApp number
-  const message = `Type: ${type}\nAsset: ${asset}\nAmount: ${amount}\nDetails: ${details}`;
-  const url = `https://wa.me/${phone}?text=${message}`;
+  const phone = "2347055912658"; // your WhatsApp number
+
+  // Build nicely formatted message with line breaks
+  let message = `Hello, I want to submit a trade request:\n\n`;
+  message += `Type: ${type}\n`;
+  message += `Asset: ${asset}\n`;
+  message += `Amount: ${amount}\n`;
+  message += `Details: ${details}\n`;
+
+  // Reminder for Gift Card proof
+  if (asset.toLowerCase().includes("gift card")) {
+    message += `\n📎 Please attach your gift card image / receipt in WhatsApp.`;
+  }
+
+  // Encode for WhatsApp URL
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   // Show confirmation
   const confirmation = document.getElementById('confirmation');
