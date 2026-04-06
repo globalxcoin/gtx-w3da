@@ -122,20 +122,21 @@ document.getElementById('tradeForm').addEventListener('submit', function(e){
 
   const phone = "2347055912658"; // your WhatsApp number
 
-  // Build nicely formatted message with line breaks
+  // Build message with newlines
   let message = `Hello, I want to submit a trade request:\n\n`;
   message += `Type: ${type}\n`;
   message += `Asset: ${asset}\n`;
   message += `Amount: ${amount}\n`;
   message += `Details: ${details}\n`;
 
-  // Reminder for Gift Card proof
+  // Gift card reminder
   if (asset.toLowerCase().includes("gift card")) {
     message += `\n📎 Please attach your gift card image / receipt in WhatsApp.`;
   }
 
-  // Encode for WhatsApp URL
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  // Replace \n with WhatsApp-compatible %0A
+  const whatsappMessage = message.replace(/\n/g, "%0A");
+  const url = `https://wa.me/${phone}?text=${whatsappMessage}`;
 
   // Show confirmation
   const confirmation = document.getElementById('confirmation');
